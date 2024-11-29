@@ -52,7 +52,10 @@ const pageClasses = {
     wishlists: () => import('./theme/wishlist'),
 };
 
-const customClasses = {};
+const customClasses = {
+    'pages\\custom\\product\\product-Pdp': () => import('./custom/product/product-Pdp'), // Windows
+    'pages\\custom\\product\\product-Pdp': () => import('./custom/product/product-Pdp'), // Mac/Linux
+};
 
 /**
  * This function gets added to the global window and then called
