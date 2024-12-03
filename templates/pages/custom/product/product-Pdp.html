@@ -10,26 +10,54 @@ product:
     limit: { { theme_settings.productpage_similar_by_views_count } }
 ---
 
-{{inject 'productId' product.id}}
- {{#partial "page"}}
- <div class="Pdp">
-<div class="row Pdp-Page">
-  <div class="columns large-6 small-12 image-section">
-    <div class="cm-main-image-container">
+{{inject 'productId' product.id}} {{#partial "page"}}
+<div class="Pdp">
+  <div class="row Pdp-Page">
+    <div class="columns large-6 small-12 image-section">
+      <div class="cm-main-image-container"></div>
+      <div class="columns thumbnailImages-div"></div>
     </div>
-      <div class="columns thumbnailImages-div">
-      </div>
+    <div class="columns large-6 small-12 product-details">
+      <h1 class="product-name"></h1>
+      <h2 class="product-price"></h2>
+      <button class="product-button">Add to Cart</button>
+      <p class="product-description"></p>
+      <div class="custom-field-item"></div>
+    </div>
   </div>
-  <div class="columns large-6 small-12 product-details">
-    <h1 class="product-name"></h1>
-    <h2 class="product-price"></h2>
-    <button class="product-button">Add to Cart</button>
-    <div class="custom-field-item"></div>
+  <div class="row  related-Product-section">
+    <div class="columns large-3 small-12 related-products">
+      <h1 class="related-Product-name">Rare Window Camera</h1>
+      <h2 class="related-Product-price">£20.00</h2>
+      <img class="related-Image"
+        src="https://i.shgcdn.com/70b92a7c-141e-48d5-bc6d-3a95d4b11c94/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
+        alt=" image-name">
+        <button class="related-product-button">Add to Cart</button>
+    </div>
+    <div class="columns large-3 small-12 related-products">
+      <h1 class="related-Product-name">Rare Window Camera</h1>
+      <h2 class="related-Product-price">£20.00</h2>
+      <img
+        src="https://i.shgcdn.com/70b92a7c-141e-48d5-bc6d-3a95d4b11c94/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
+        alt=" image-name">
+        <button class="related-product-button">Add to Cart</button>
+    </div>
+    <div class="columns large-3 small-12 related-products">
+      <h1 class="related-Product-name">Rare Window Camera</h1>
+      <h2 class="related-Product-price">£20.00</h2>
+      <img
+        src="https://i.shgcdn.com/70b92a7c-141e-48d5-bc6d-3a95d4b11c94/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
+        alt=" image-name">
+        <button class="related-product-button">Add to Cart</button>
+    </div>
+    <div class="columns large-3 small-12 related-products">
+      <h1 class="related-Product-name">Rare Window Camera</h1>
+      <h2 class="related-Product-price">£20.00</h2>
+      <img
+        src="https://i.shgcdn.com/70b92a7c-141e-48d5-bc6d-3a95d4b11c94/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
+        alt=" image-name">
+        <button class="related-product-button">Add to Cart</button>
+    </div>
+  </div>
 </div>
-<div class="row"><div class="columns  large-12 small-12 description">
-  <h1 class="description-Name">Description</h1>
-  <p class="product-description"> 
-</p></div></div>
-</div>
-
 {{/partial}} {{> layout/base}}

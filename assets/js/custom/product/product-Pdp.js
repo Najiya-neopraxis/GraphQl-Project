@@ -21,35 +21,50 @@ export default class ProductConfigurator extends PageManager {
             body: JSON.stringify({
               query: `query  {
   site {
-    product(entityId: ${this.productId}) {
-      name
-      prices {
-        salePrice {
-          formatted
-
+  product(entityId: ${this.productId}) {
+    name
+    prices {
+      salePrice {
+        formatted
+      }
+    }
+    description
+    customFields {
+      edges {
+        node {
+          name
+          value
         }
       }
-      description
-      customFields {
-        edges {
-          node {
-            name
-            value
+    }
+    defaultImage {
+      urlOriginal
+    }
+    images {
+      edges {
+        node {
+          urlOriginal
+        }
+      }
+    }
+    relatedProducts {
+      edges {
+        node {
+          entityId
+          name
+          prices {
+            salePrice {
+              formatted
+            }
           }
-        }
-      }
-      defaultImage{
-        urlOriginal
-      }
-      images {
-        edges {
-          node {
+          defaultImage {
             urlOriginal
           }
         }
       }
     }
   }
+}
 }`
             })
           })
@@ -87,7 +102,7 @@ export default class ProductConfigurator extends PageManager {
                   console.log("thumbnailImage", thumbnailImage);
 
                   const divElement = document.createElement('div');
-                  divElement.classList.add('product-images'); 
+                  divElement.classList.add('product-images');  
 
                   const imgElement = document.createElement('img');
                   imgElement.src = thumbnailImage;
@@ -95,6 +110,15 @@ export default class ProductConfigurator extends PageManager {
                   
                   divElement.appendChild(imgElement);
                   thumbnailImageDiv.appendChild(divElement);
+
+
+                  imgElement.addEventListener('click', function() {
+
+                    const productImage = document.querySelector('.cm-main-image-container img');
+                    if (productImage) {
+                        productImage.src = thumbnailImage;  
+                    }
+                  });
               }); 
 
               const customFieldContainer = document.querySelector('.custom-field-item');
@@ -117,8 +141,35 @@ export default class ProductConfigurator extends PageManager {
               
                   customFieldContainer.appendChild(divElement);
               });
+              const relatedProducts = data.data.site.product.relatedProducts.edges;
+              const relatedProductData = document.querySelector('.related-products'); 
+              
+              relatedProducts.forEach(data => {
+                const relatedProductName = data.node.name;
+                const relatedProductPrice = data.node.prices.salePrice.formatted;
+                const relatedProductImage = data.node.defaultImage.urlOriginal;
+              
+                console.log("relatedProducts", relatedProducts); 
+
+                const divElement = document.createElement('div');
+                divElement.classList.add('relProduct');
+                const relatedName = document.createElement('p');
+                relatedName.classList.add('related_name');
+                relatedName.textContent = `${relatedProductName}:`;
+                divElement.appendChild(relatedName);
+                const priceElement = document.createElement('p');
+                priceElement.classList.add('related-Price');
+                priceElement.textContent = relatedProductPrice;
+                divElement.appendChild(priceElement);
+                const imageElement = document.createElement('img');
+                imageElement.src = relatedProductImage;
+                imageElement.alt = relatedProductName;  
+                divElement.appendChild(imageElement);
+                relatedProductData.appendChild(divElement);
+              });
           }) // will log JSON result to browser console
           .catch(error => console.error(error));
     }
   }
+
   
